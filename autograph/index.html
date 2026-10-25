@@ -257,11 +257,111 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
 .has-photo .hero__inner { padding-top: 160px; }
 }
 .hero__price--note { display: block; font-size: 16px; color: var(--hero-ink); }
+.ic { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hero__art, .cta__art { position: absolute; pointer-events: none; fill: none; stroke: var(--accent-hi); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.hero__art { display: none; z-index: -1; width: min(92vw, 560px); height: min(92vw, 560px); right: -28vw; top: 4%; opacity: .32; }
+.no-photo .hero__art { display: block; }
+.cta__art { z-index: -1; width: 420px; height: 420px; right: -120px; bottom: -110px; opacity: .14; }
+@media (min-width: 900px) { .hero__art { right: -40px; top: 50%; transform: translateY(-50%); opacity: .5; } .no-photo .hero__inner { max-width: 1120px; } .no-photo .hero__lead, .no-photo .actions { max-width: 520px; } }
+@media (prefers-reduced-motion: no-preference) {
+.hero__bg { animation: kb 18s ease-out both; }
+@keyframes kb { from { transform: scale(1.08); } to { transform: scale(1); } }
+}
+.marquee { overflow: hidden; background: var(--accent); color: var(--accent-ink); border-block: 1px solid color-mix(in srgb, var(--accent-ink) 12%, transparent); }
+.marquee__track { display: flex; width: max-content; animation: mq 38s linear infinite; }
+.marquee__track > span { display: flex; align-items: center; gap: 0; padding: 14px 0; white-space: nowrap; font: 700 15px/1 var(--font); letter-spacing: .06em; text-transform: uppercase; }
+.marquee__track i { font-style: normal; display: inline-flex; align-items: center; gap: 22px; padding-right: 22px; }
+.marquee__track i::after { content: "✦"; opacity: .55; font-size: 12px; }
+@keyframes mq { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+.stats { padding: clamp(28px, 6vw, 56px) 0 0; }
+.stats__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.stats__lbl, .stats__val { overflow-wrap: break-word; hyphens: auto; }
+.stats__grid li {
+position: relative; overflow: hidden; display: grid; gap: 6px; padding: 18px 18px 16px;
+border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow);
+}
+.stats__grid li::after { content: ""; position: absolute; right: -24px; top: -24px; width: 72px; height: 72px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.stats__grid .ic { color: var(--accent-deep); }
+.stats__val { font: 700 clamp(28px, 7vw, 40px)/1 var(--display); letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.stats__lbl { font-size: 14px; line-height: 1.3; color: var(--ink-2); }
+@media (min-width: 900px) { .stats__grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+.tiles { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tiles li {
+display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 12px 14px;
+border-radius: var(--r); background: var(--surface); border: 1px solid var(--line);
+font-size: 15px; font-weight: 600; line-height: 1.25;
+}
+.tiles li span { display: block; min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+.tiles li span::first-letter { text-transform: uppercase; }
+.tiles .ic { width: 22px; height: 22px; color: var(--accent-deep); }
+#services > .wrap > .tiles:first-of-type { margin-top: 0; }
+@media (min-width: 900px) { .tiles { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
+.prices li:first-child { position: relative; }
+.prices li:first-child::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--accent); }
+.section--alt { position: relative; isolation: isolate; }
+.section--alt::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: var(--pattern); background-size: var(--pattern-size); opacity: .06; }
+.reviews__text { position: relative; padding-top: 34px; }
+.reviews__text::before { content: "“"; position: absolute; left: -4px; top: -18px; font: 700 96px/1 Georgia, serif; color: var(--accent); opacity: .5; }
+.steps { list-style: none; counter-reset: st; margin: 0; padding: 0; display: grid; gap: 12px; }
+.steps li {
+counter-increment: st; position: relative; display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; align-items: start;
+padding: 20px; border-radius: var(--r-lg); background: var(--hero); color: var(--hero-ink);
+}
+.steps__ico { grid-row: span 2; width: 52px; height: 52px; padding: 13px; border-radius: 16px; background: var(--accent); color: var(--accent-ink); fill: none; stroke: currentColor; stroke-width: 1.8; }
+.steps h3 { margin: 2px 0 4px; font-size: 18px; }
+.steps h3::before { content: counter(st) ". "; color: var(--accent-hi); }
+.steps p { margin: 0; color: var(--hero-ink-2); font-variant-numeric: tabular-nums; }
+.steps a { color: var(--hero-ink); font-weight: 700; text-decoration: none; }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 16px; } .steps li { grid-template-columns: 1fr; row-gap: 14px; } .steps__ico { grid-row: auto; } }
+.facts { gap: 10px; }
+.facts li { display: flex; align-items: flex-start; gap: 10px; color: var(--ink); }
+.facts .ic { width: 22px; height: 22px; color: var(--accent-deep); margin-top: 1px; }
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .rv.in { opacity: 1; transform: none; }
+.js .rv:nth-child(2) { transition-delay: .08s; } .js .rv:nth-child(3) { transition-delay: .16s; } .js .rv:nth-child(4) { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; transition: none; } }
+@media (min-width: 900px) {
+.gallery__track { grid-auto-flow: row; grid-template-columns: 2fr 1fr; grid-auto-columns: auto; }
+.gallery__item:only-child { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
+}
 </style>
 </head>
 <body data-theme="wash" class="no-photo">
+<script>document.documentElement.classList.add("js")</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></symbol>
+<symbol id="i-seat" viewBox="0 0 24 24"><path d="M8 3h5a2 2 0 0 1 2 2l-1 8H8zM8 13l-1 8M14 13l3 8M5 13h13"/></symbol>
+<symbol id="i-engine" viewBox="0 0 24 24"><path d="M4 10h3l2-2h6v3h2l2-2v8l-2-2h-2v3H9l-2-2H4zM2 12v3"/></symbol>
+<symbol id="i-tire" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M3 14l2-5a2 2 0 0 1 2-1.3h10A2 2 0 0 1 19 9l2 5v4h-3M6 18H3v-4h18"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></symbol>
+<symbol id="i-paint" viewBox="0 0 24 24"><path d="M7 10h7v11H7zM9 10V6h3v4M16 6h.01M18.5 4h.01M18.5 8h.01M21 6h.01"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><path d="M3 7h18l-2.5 11h-13zM7 10l-1 5M12 10l1.5-1"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M4.5 9.5a11 11 0 0 1 15 0M7.5 12.8a6.5 6.5 0 0 1 9 0M12 17h.01"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 8h11v5a5 5 0 0 1-10 0zM16 9h1.5a2.5 2.5 0 0 1 0 5H16M8 3v2M11 3v2"/></symbol>
+<symbol id="i-park" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4l-5.5 2.9 1-6.2L3 9.7l6.2-.9z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+<symbol id="art-wash" viewBox="0 0 400 400"><path d="M40 262c8-38 40-52 74-58l46-46c8-8 18-12 30-12h92c12 0 22 5 30 13l42 45c36 6 52 26 52 58v22H40z"/><path d="M154 204l32-34h48v34M250 170h26l30 34"/><circle cx="110" cy="286" r="30"/><circle cx="110" cy="286" r="12"/><circle cx="290" cy="286" r="30"/><circle cx="290" cy="286" r="12"/><circle cx="96" cy="120" r="22"/><circle cx="148" cy="78" r="12"/><circle cx="60" cy="70" r="8"/><circle cx="330" cy="110" r="16"/><circle cx="362" cy="60" r="7"/><path d="M80 342c20-10 40 10 60 0s40 10 60 0 40 10 60 0 40 10 60 0"/></symbol>
+<symbol id="art-garage" viewBox="0 0 400 400"><circle cx="210" cy="190" r="104" stroke-width="28" stroke-dasharray="26 20"/><circle cx="210" cy="190" r="70"/><circle cx="210" cy="190" r="26"/><path d="M118 296a52 52 0 0 0-70 66l-28 28M118 296l-36 6-6 36M118 296c22 22 22 52 0 72"/><path d="M300 330l40 40M320 310l40 40"/></symbol>
+<symbol id="art-tread" viewBox="0 0 400 400"><circle cx="200" cy="200" r="164"/><circle cx="200" cy="200" r="136" stroke-width="30" stroke-dasharray="14 12"/><circle cx="200" cy="200" r="88"/><circle cx="200" cy="200" r="28"/><path d="M200 112v60M200 228v60M112 200h60M228 200h60M138 138l42 42M220 220l42 42M138 262l42-42M220 180l42-42"/></symbol>
+<symbol id="art-paint" viewBox="0 0 400 400"><path d="M20 250c40-60 110-90 190-90s130 30 170 90v30H20z"/><path d="M60 230c40-40 90-56 150-56M250 178c40 6 70 22 96 50"/><circle cx="100" cy="284" r="28"/><circle cx="300" cy="284" r="28"/><path d="M250 60h50v34h-50zM270 94v30h12M300 70h30M346 52h.01M360 76h.01M350 98h.01M372 60h.01M382 88h.01"/></symbol>
+</svg>
 <header class="hero">
   <div class="hero__pattern" aria-hidden="true"></div>
+  <svg class="hero__art" aria-hidden="true"><use href="#art-wash"/></svg>
   <div class="wrap hero__inner">
     <p class="hero__kicker"><span>Автомойка и детейлинг</span><span class="dot" aria-hidden="true"></span><span>Центральный район</span></p>
     <h1 class="hero__title">Autograph</h1>
@@ -279,19 +379,21 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
     </div>
   </div>
 </header>
+<div class="marquee" aria-hidden="true"><div class="marquee__track"><span><i>бесконтактная мойка</i><i>самообслуживание для легковых авто</i><i>химчистка салона</i><i>мойка двигателя</i><i>мойка днища</i><i>полировка кузова</i><i>керамическое покрытие</i><i>удаление известкового налёта со стёкол</i></span><span><i>бесконтактная мойка</i><i>самообслуживание для легковых авто</i><i>химчистка салона</i><i>мойка двигателя</i><i>мойка днища</i><i>полировка кузова</i><i>керамическое покрытие</i><i>удаление известкового налёта со стёкол</i></span></div></div>
 <main>
+<section class="stats" aria-label="Коротко о главном"><div class="wrap"><ul class="stats__grid"><li class="rv"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg><span class="stats__val">4,9</span><span class="stats__lbl">рейтинг в 2ГИС</span></li><li class="rv"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span class="stats__val">35</span><span class="stats__lbl">отзывов клиентов</span></li><li class="rv"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span class="stats__val">10–20</span><span class="stats__lbl">Пн–Сб</span></li><li class="rv"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg><span class="stats__val">1</span><span class="stats__lbl">услуга с ценами</span></li></ul></div></section>
 <section class="section" id="services">
   <div class="wrap">
     <h2 class="h2"><span class="h2__num" aria-hidden="true"></span>Услуги и цены</h2>
     <ul class="prices"><li><span class="prices__name">Комплексная мойка</span><span class="prices__val"><small>от</small>2000 ₽</span></li></ul>
-    <h3 class="sub">Также делают</h3><ul class="chips"><li>бесконтактная мойка</li><li>самообслуживание для легковых авто</li><li>химчистка салона</li><li>мойка двигателя</li><li>мойка днища</li><li>полировка кузова</li><li>керамическое покрытие</li><li>удаление известкового налёта со стёкол</li></ul>
+    <h3 class="sub">Также делают</h3><ul class="tiles"><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg><span>бесконтактная мойка</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>самообслуживание для легковых авто</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-seat"/></svg><span>химчистка салона</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg><span>мойка двигателя</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-drop"/></svg><span>мойка днища</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg><span>полировка кузова</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-spark"/></svg><span>керамическое покрытие</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>удаление известкового налёта со стёкол</span></li></ul>
     <p class="note">Цена на карточке указана минимальная, остальное уточняйте по телефону.</p>
   </div>
 </section>
 <section class="section section--alt" id="why">
   <div class="wrap">
     <h2 class="h2"><span class="h2__num" aria-hidden="true"></span>За что хвалят</h2>
-    <ol class="why"><li><h3>Как новая</h3><p>Машина после полировки и керамики выглядит заметно лучше.</p></li><li><h3>Бережно к машине</h3><p>Аккуратность и внимание к деталям.</p></li><li><h3>Советы по уходу</h3><p>Персонал вежливый и подсказывает, как ухаживать за авто.</p></li></ol>
+    <ol class="why"><li class="rv"><h3>Как новая</h3><p>Машина после полировки и керамики выглядит заметно лучше.</p></li><li class="rv"><h3>Бережно к машине</h3><p>Аккуратность и внимание к деталям.</p></li><li class="rv"><h3>Советы по уходу</h3><p>Персонал вежливый и подсказывает, как ухаживать за авто.</p></li></ol>
   </div>
 </section>
 <section class="section" id="reviews">
@@ -308,6 +410,16 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
     </div>
   </div>
 </section>
+<section class="section" id="how">
+  <div class="wrap">
+    <h2 class="h2"><span class="h2__num" aria-hidden="true"></span>Как записаться</h2>
+    <ol class="steps">
+      <li class="rv"><svg class="steps__ico" aria-hidden="true"><use href="#i-phone"/></svg><h3>Позвоните</h3><p><a href="tel:+79144903355">+7 914 490-33-55</a></p></li>
+      <li class="rv"><svg class="steps__ico" aria-hidden="true"><use href="#i-clock"/></svg><h3>Договоритесь о времени</h3><p>Пн–Сб 10:00–20:00 · Вс 10:00–20:00</p></li>
+      <li class="rv"><svg class="steps__ico" aria-hidden="true"><use href="#i-pin"/></svg><h3>Приезжайте</h3><p>ул. Ленина, 156, 1 этаж, Чита, 672007</p></li>
+    </ol>
+  </div>
+</section>
 <section class="section section--alt" id="contacts">
   <div class="wrap contacts">
     <div class="contacts__info">
@@ -315,7 +427,7 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
       <p class="contacts__addr">ул. Ленина, 156, 1 этаж, Чита, 672007</p>
       <p class="muted">Центральный район</p>
       <dl class="hours"><dt>Пн–Сб</dt><dd>10:00–20:00</dd><dt>Вс</dt><dd>10:00–20:00</dd></dl>
-      <ul class="facts"><li><b>Оплата:</b> оплата картой, наличный расчёт, оплата через банк, перевод с карты, оплата по QR-коду</li><li><b>Удобства:</b> зал ожидания, возможна запись, парковка: 24 места, до 4 машин одновременно</li></ul>
+      <ul class="facts"><li><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg><span><b>Оплата:</b> оплата картой, наличный расчёт, оплата через банк, перевод с карты, оплата по QR-коду</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-cup"/></svg><span>Зал ожидания</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg><span>Возможна запись</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-park"/></svg><span>Парковка: 24 места</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-tire"/></svg><span>До 4 машин одновременно</span></li></ul>
       <a class="btn btn--ghost btn--block" href="https://yandex.ru/maps/?rtext=~%D1%83%D0%BB.%20%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C%20156%2C%201%20%D1%8D%D1%82%D0%B0%D0%B6%2C%20%D0%A7%D0%B8%D1%82%D0%B0%2C%20672007&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
     </div>
     <div class="map">
@@ -324,6 +436,7 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
   </div>
 </section>
 <section class="cta">
+  <svg class="cta__art" aria-hidden="true"><use href="#art-wash"/></svg>
   <div class="wrap cta__inner">
     <h2 class="cta__title">Запишитесь на мойку или детейлинг</h2>
     <p class="cta__text">Приём по предварительной записи, на площадке до 4 машин.</p>
@@ -344,6 +457,14 @@ box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
   var vis=new Set();
   var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?vis.add(e.target):vis.delete(e.target)});f.classList.toggle("is-hidden",vis.size>0)});
   io.observe(h);if(c)io.observe(c);
+})();
+</script>
+<script>
+(function(){
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e)});
 })();
 </script>
 <script>
